@@ -78,6 +78,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   find_package(X11 REQUIRED)
   find_library(XINPUT_LIBRARY libXi.so)
   find_package(Threads REQUIRED)
+  find_package(SDL2 REQUIRED)
 
   if(XINPUT_LIBRARY STREQUAL "XINPUT_LIBRARY-NOTFOUND")
       message(FATAL_ERROR "Could not find libXi.so")
@@ -98,7 +99,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   target_include_directories(Milton PRIVATE
     ${GTK2_INCLUDE_DIRS}
     ${X11_INCLUDE_DIR}
-    ${SDL2DIR}/build/linux64/include/SDL2
+    ${SDL2_INCLUDE_DIRS}
     ${OPENGL_INCLUDE_DIR}
   )
 
@@ -107,8 +108,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     ${X11_LIBRARIES}
     ${OPENGL_LIBRARIES}
     ${XINPUT_LIBRARY}
-    ${SDL2DIR}/build/linux64/lib/libSDL2maind.a
-    ${SDL2DIR}/build/linux64/lib/libSDL2d.a
+    ${SDL2_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
     ${CMAKE_DL_LIBS}
     )
